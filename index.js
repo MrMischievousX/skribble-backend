@@ -6,6 +6,29 @@ const clients = {};
 const games = {};
 let idx = 0;
 const keyWords = [
+  "America",
+  "Balloon",
+  "Biscuit",
+  "Blanket",
+  "Chicken",
+  "Chimney",
+  "Country",
+  "Cupcake",
+  "Curtain",
+  "Diamond",
+  "Eyebrow",
+  "Fireman",
+  "Florida",
+  "Germany",
+  "Harpoon",
+  "Husband",
+  "Morning",
+  "Octopus",
+  "Popcorn",
+  "Printer",
+  "Sandbox",
+  "Skyline",
+  "Spinach",
   "Blueberry",
   "Breakfast",
   "Bubblegum",
@@ -25,6 +48,24 @@ const keyWords = [
   "Swordfish",
   "Telephone",
   "Telescope",
+  "Backpack",
+  "Basement",
+  "Building",
+  "Campfire",
+  "Complete",
+  "Elephant",
+  "Exercise",
+  "Hospital",
+  "Internet",
+  "Jalapeno",
+  "Mosquito",
+  "Sandwich",
+  "Scissors",
+  "Seahorse",
+  "Skeleton",
+  "Snowball",
+  "Sunshade",
+  "Treasure",
 ];
 let answer = "";
 
@@ -61,7 +102,9 @@ wsServer.on("request", (request) => {
   });
 
   connection.on("close", () => {
-    console.log("closed");
+    clients = {};
+    games = {};
+    idx = 0;
   });
 
   connection.on("message", (message) => {
