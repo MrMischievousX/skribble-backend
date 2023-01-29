@@ -29,8 +29,8 @@ const keyWords = [
 ];
 let answer = "";
 
-httpServer.listen(process.env.PORT || 9090, () => {
-  console.log("Listening to 9090");
+httpServer.listen(process.env.PORT || 5000, () => {
+  console.log(`Listening to ${process.env.PORT || 5000}`);
 });
 
 const wsServer = new webSocketServer({
