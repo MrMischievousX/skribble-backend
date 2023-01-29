@@ -2,8 +2,8 @@ const http = require("http");
 const webSocketServer = require("websocket").server;
 const httpServer = http.createServer();
 
-const clients = {};
-const games = {};
+let clients = {};
+let games = {};
 let idx = 0;
 const keyWords = [
   "America",
