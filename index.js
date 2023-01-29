@@ -29,7 +29,7 @@ const keyWords = [
 ];
 let answer = "";
 
-httpServer.listen(9090, () => {
+httpServer.listen(process.env.PORT || 9090, () => {
   console.log("Listening to 9090");
 });
 
