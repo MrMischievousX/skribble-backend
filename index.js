@@ -2,8 +2,8 @@ const http = require("http");
 const webSocketServer = require("websocket").server;
 const httpServer = http.createServer();
 
-let clients = {};
-let games = {};
+const clients = {};
+const games = {};
 let idx = 0;
 const keyWords = [
   "America",
@@ -102,9 +102,9 @@ wsServer.on("request", (request) => {
   });
 
   connection.on("close", () => {
-    clients = {};
-    games = {};
-    idx = 0;
+    // clients = {};
+    // games = {};
+    // idx = 0;
   });
 
   connection.on("message", (message) => {
