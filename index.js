@@ -2,11 +2,18 @@ const http = require("http");
 const webSocketServer = require("websocket").server;
 const httpServer = http.createServer();
 const keyWords = require("./keywords");
+const crypto = require("crypto");
 
 //Game Variables
 const clients = {};
 const games = {};
 let idx = 0;
+
+// setInterval(() => {
+//   clients = {};
+//   games = {};
+//   idx = 0;
+// }, 1000);
 
 //Starting http server
 httpServer.listen(process.env.PORT || 8080, () => {
@@ -41,9 +48,6 @@ function randomNum() {
 wsServer.on("request", (request) => {
   const connection = request.accept(null, request.origin);
 
-  console.log(JSON.stringify(Object.keys(clients)));
-  console.log(JSON.stringify(Object.keys(games)));
-
   //Open connection handler
   connection.on("open", () => {
     console.log("Opened");
@@ -65,7 +69,6 @@ wsServer.on("request", (request) => {
 
       //Checking if game with id already exist
       if (games[gameId]) {
-        console.log("Game already created");
         const payLoad = {
           method: "error",
           code: 1,
@@ -81,7 +84,7 @@ wsServer.on("request", (request) => {
           clients: [],
           answer: "",
           timer: 60,
-          answerCOunt: 0,
+          answerCount: 0,
         };
 
         const payLoad = {
@@ -152,7 +155,7 @@ wsServer.on("request", (request) => {
 
       setTimeout(() => {
         cleanGame(gameId);
-      }, 60 * 1000);
+      }, 1800 * 1000);
     }
 
     //Game Logics
@@ -285,8 +288,6 @@ wsServer.on("request", (request) => {
 });
 
 const cleanGame = (gameId) => {
-  console.log("GAME CLEANUP");
-
   const game = games[gameId];
   const timeOutPayload = {
     method: "error",
@@ -308,7 +309,5 @@ const cleanGame = (gameId) => {
 
   setTimeout(() => {
     delete games[gameId];
-    console.log(games);
-    console.log(clients);
   }, 200);
 };
