@@ -2,7 +2,7 @@ const http = require("http");
 const webSocketServer = require("websocket").server;
 const httpServer = http.createServer();
 const keyWords = require("./keywords");
-const crypto = require("crypto");
+const crypto = require("crypto").webcrypto;
 
 //Game Variables
 const clients = {};
